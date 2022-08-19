@@ -1,7 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import Router, { useRouter } from "next/router";
+
 export default function Navbar() {
+	const router = useRouter();
+	const activepage = router.pathname;
 	return (
 		<nav className="bg-gray-900 px-5 border-b-2 border-gray-700 sticky top-0 z-50">
 			<div className="flex justify-between">
@@ -11,10 +15,22 @@ export default function Navbar() {
 				{/* Desktop menu */}
 				<div className="hidden sm:block sm:ml-6">
 					<div className="flex flex-1 items-center space-x-4">
-						<NavbarItem active={true} href="" title="Home" />
-						<NavbarItem active={false} href="about" title="About" />
-						<NavbarItem active={false} href="boards" title="Boards" />
-						<NavbarItem active={false} href="profile" title="Profile" />
+						<NavbarItem active={activepage == "/"} href="" title="Home" />
+						<NavbarItem
+							active={activepage == "/about"}
+							href="about"
+							title="About"
+						/>
+						<NavbarItem
+							active={activepage == "/boards"}
+							href="boards"
+							title="Boards"
+						/>
+						<NavbarItem
+							active={activepage == "/profile"}
+							href="profile"
+							title="Profile"
+						/>
 					</div>
 				</div>
 				<div className="block">
